@@ -656,7 +656,7 @@ const siteData = {
   .pcard > .tape { position:absolute; z-index:4; display:block; pointer-events:none; opacity:var(--tp-o,1); filter:drop-shadow(0 3px 4px rgba(0,0,0,var(--tp-sh,.5))); }
   .pcard > .tape img { display:block; height:var(--tp-size,96px); width:auto; max-width:none; }
   .pcard > .tape.tr { top:0; right:0; transform:translate(calc(50% - var(--tp-tr-x,0px) + var(--tp-fx,0px)), calc(-50% + var(--tp-tr-y,0px))) rotate(var(--tp-tr-r,-45deg)); }
-  .pcard > .tape.bl { bottom:0; left:0; transform:translate(calc(-50% + var(--tp-bl-x,0px) + var(--tp-fx,0px)), calc(50% - var(--tp-bl-y,0px))) rotate(var(--tp-bl-r,-45deg)); }
+  .pcard > .tape.bl { bottom:0; left:0; transform:translate(calc(-50% + var(--tp-bl-x,0px) + var(--tp-fx,0px)), calc(50% - var(--tp-bl-y,0px))) rotate(var(--tp-bl-r,-48deg)); }
   @media (max-width:767px) { .pcard > .tape img { height:var(--tp-size-m,64px); } }
   /* teks kartu Proyek: bayangan + warna (diatur di siteData.projectsText) */
   .pcard { text-shadow:var(--pt-shadow,none); }
@@ -1021,8 +1021,8 @@ const siteData = {
     var av = h.avatar ? '<img src="' + esc(h.avatar) + '" alt="' + esc(S.name) + '" style="display:block;width:100%;height:auto" onerror="this.outerHTML=window.__avatarSVG">' : avatarSVG();
     window.__avatarSVG = avatarSVG();
     return '<section id="top" class="relative overflow-hidden" style="background:var(--dark)">' +
-      '<div class="mx-auto w-full px-3 md:px-4 pt-20 md:pt-24 flex flex-col items-center">' +
-      '<div class="mb-2 hero-anim"><span class="hint-badge"><span class="hint-badge-pulse"></span>( Interactive Text )</span></div>' +
+      '<div class="mx-auto w-full px-3 md:px-4 pt-24 md:pt-28">' +
+      '<div class="text-center mb-2 hero-anim"><span class="hint-badge"><span class="hint-badge-pulse"></span>( Interactive Text )</span></div>' +
       '<h1 id="heroTitle" class="hero-title hero-anim" aria-label="' + esc(h.title) + '" style="--fb-blur:' + esc((S.footerBlurText || {}).initialBlur || '12px') + ';--fb-opacity:' + esc((S.footerBlurText || {}).initialOpacity || 0.35) + '">' + heroTitleHTML(h.title) + '</h1>' +
       '<div class="stage"><div class="glow hero-anim"></div>' +
       '<div class="stage-av"><div class="hero-av-in hero-anim"><div class="float" style="--t:9s"><div data-depth="-26">' + xrayWrap(av) + '</div></div></div></div>' +
@@ -1443,7 +1443,7 @@ const siteData = {
     function line(x0, y0, x1, y1, nx, ny) { segs.push({ t: 0, x0: x0, y0: y0, x1: x1, y1: y1, nx: nx, ny: ny, L: Math.hypot(x1 - x0, y1 - y0) }); }
     function arc(cx, cy, a0) { segs.push({ t: 1, cx: cx, cy: cy, a0: a0, L: hp * r }); }
     line(r, 0, w - r, 0, 0, -1); arc(w - r, r, -hp); line(w, r, w, h - r, 1, 0); arc(w - r, h - r, 0);
-    line(w - r, h, r, h, 0, 1); arc(r, h - r, hp); line(0, h - r, 0, r, -1, 0); arc(r, r, Math.PI);
+    line(w - r, h, r, h, 0, 1); arc(r, h - r, hp); line(0, h - r, 0, r, Math.PI);
     segs.forEach(function (g) { P += g.L; });
     var n = Math.max(48, Math.round(P / 6)), k1 = waves, k2 = waves * 2 + 1, k3 = waves * 5 + 2, T = Math.PI * 2, si = 0, acc = 0, pts = [];
     for (var i = 0; i < n; i++) {
