@@ -340,10 +340,10 @@ const siteData = {
       shadow:      0.5,       // kekuatan bayangan selotip (0 - 1)
 
       // image = nama file selotip. Kosong "" = selotip di pojok itu dihilangkan
-      // x / y = geser dari pojok kartu (px). Negatif = keluar dari kartu, positif = masuk ke dalam
+      // x / y = geser titik tengah selotip dari pojok kartu (px). 0 = tepat menempel di pojok, positif = lebih masuk ke dalam kartu, negatif = lebih keluar
       // rotate = kemiringan dalam derajat (-45 = miring "\" menyilang pojok)
-      topRight:   { image: "tape-1.png", x: -22, y: -38, rotate: -45 },
-      bottomLeft: { image: "tape-2.png", x: -22, y: -38, rotate: -48 }
+      topRight:   { image: "tape-1.png", x: 0, y: 0, rotate: -45 },
+      bottomLeft: { image: "tape-2.png", x: 0, y: 0, rotate: -48 }
     }
   },
 
@@ -430,6 +430,8 @@ const siteData = {
 <style>
   :root { --dark:#050505; --panel:#0c0c0d; --light:#e9eef2; --text:#ececec; --g1:#8b5cf6; --g2:#ec4899; --g3:#f59e0b; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  html { overflow-x:hidden; overflow-x:clip; max-width:100%; }
+  @supports (overflow:clip) { #projects { overflow-x:clip; } }
   body { margin:0; background:var(--dark); color:var(--text); font-family:'Space Grotesk',system-ui,sans-serif; overflow-x:hidden; overflow-x:clip; -webkit-font-smoothing:antialiased; }
   .font-display { font-family:'Archivo Black','Arial Black',Impact,sans-serif; letter-spacing:-.02em; font-weight:900; }
   ::selection { background:var(--g2); color:#fff; }
@@ -484,6 +486,8 @@ const siteData = {
   /* ---------- media / ilustrasi abstrak / video ---------- */
   .media { position:relative; overflow:hidden; width:100%; height:100%; }
   .media img, .media video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.7,.2,1); }
+  .media video[data-src] { opacity:0; transition:transform .8s cubic-bezier(.2,.7,.2,1), opacity .6s ease; }
+  .media video[data-src].ready { opacity:1; }
 
   /* ---------- EFEK BLUR-TO-FOCUS ---------- */
   .footer-blur-container { display: inline-block; cursor: default; user-select: none; perspective: 1000px; }
@@ -632,8 +636,8 @@ const siteData = {
   /* selotip (gambar hasil potongan foto referensi) */
   .pcard > .tape { position:absolute; z-index:4; display:block; pointer-events:none; opacity:var(--tp-o,1); filter:drop-shadow(0 3px 4px rgba(0,0,0,var(--tp-sh,.5))); }
   .pcard > .tape img { display:block; height:var(--tp-size,96px); width:auto; max-width:none; }
-  .pcard > .tape.tr { top:var(--tp-tr-y,-38px); right:var(--tp-tr-x,-22px); transform:rotate(var(--tp-tr-r,-45deg)); }
-  .pcard > .tape.bl { bottom:var(--tp-bl-y,-38px); left:var(--tp-bl-x,-22px); transform:rotate(var(--tp-bl-r,-45deg)); }
+  .pcard > .tape.tr { top:0; right:0; transform:translate(calc(50% - var(--tp-tr-x,0px) + var(--tp-fx,0px)), calc(-50% + var(--tp-tr-y,0px))) rotate(var(--tp-tr-r,-45deg)); }
+  .pcard > .tape.bl { bottom:0; left:0; transform:translate(calc(-50% + var(--tp-bl-x,0px) + var(--tp-fx,0px)), calc(50% - var(--tp-bl-y,0px))) rotate(var(--tp-bl-r,-45deg)); }
   @media (max-width:767px) { .pcard > .tape img { height:var(--tp-size-m,64px); } }
   /* teks kartu Proyek: bayangan + warna (diatur di siteData.projectsText) */
   .pcard { text-shadow:var(--pt-shadow,none); }
@@ -847,13 +851,14 @@ const siteData = {
 
     if (src) {
       if (isVideo) {
-        var attrs = 'playsinline';
-        if (vs.autoplay !== false) attrs += ' autoplay';
+        var attrs = 'playsinline preload="none"';
+        if (vs.autoplay !== false) attrs += ' data-autoplay="1"';
         if (vs.loop !== false) attrs += ' loop';
         if (vs.muted !== false) attrs += ' muted';
         if (vs.controls) attrs += ' controls';
 
-        content = '<video src="' + esc(src) + '" ' + attrs + ' style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"></video>';
+        /* lazy load: src baru dipasang (data-src) saat video mendekati layar */
+        content = '<video data-src="' + esc(src) + '" ' + attrs + ' style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"></video>';
       } else {
         content = '<img src="' + esc(src) + '" alt="' + esc(alt || '') + '" loading="lazy" onerror="this.remove()">';
       }
@@ -1397,8 +1402,8 @@ const siteData = {
     set('--tp-size', n(T.size, 96) + 'px'); set('--tp-size-m', n(T.sizeMobile, 64) + 'px');
     set('--tp-o', n(T.opacity, 1)); set('--tp-sh', n(T.shadow, .5));
     var tr = T.topRight || {}, bl = T.bottomLeft || {};
-    set('--tp-tr-x', n(tr.x, -22) + 'px'); set('--tp-tr-y', n(tr.y, -38) + 'px'); set('--tp-tr-r', n(tr.rotate, -45) + 'deg');
-    set('--tp-bl-x', n(bl.x, -22) + 'px'); set('--tp-bl-y', n(bl.y, -38) + 'px'); set('--tp-bl-r', n(bl.rotate, -48) + 'deg');
+    set('--tp-tr-x', n(tr.x, 0) + 'px'); set('--tp-tr-y', n(tr.y, 0) + 'px'); set('--tp-tr-r', n(tr.rotate, -45) + 'deg');
+    set('--tp-bl-x', n(bl.x, 0) + 'px'); set('--tp-bl-y', n(bl.y, 0) + 'px'); set('--tp-bl-r', n(bl.rotate, -48) + 'deg');
     $$('.pcard', sec).forEach(function (card, i) {
       var pl = $('.plastic', card); if (!pl) return;
       pl.classList.toggle('border', amp <= 0);
@@ -1412,6 +1417,52 @@ const siteData = {
       upd();
       if ('ResizeObserver' in window) new ResizeObserver(upd).observe(card); else window.addEventListener('resize', upd);
     });
+  })();
+
+  /* ---------- selotip: jaga agar tidak keluar layar (mencegah halaman melebar di HP) ---------- */
+  (function fitTapes() {
+    var sec = $('#projects'); if (!sec) return;
+    var tapes = [].slice.call(sec.querySelectorAll('.pcard > .tape')); if (!tapes.length) return;
+    function fit() {
+      var vw = document.documentElement.clientWidth, m = 2;
+      tapes.forEach(function (t) { t.style.setProperty('--tp-fx', '0px'); });
+      tapes.forEach(function (t) {
+        var r = t.getBoundingClientRect(); if (!r.width) return;
+        var dx = 0;
+        if (r.right > vw - m) dx = (vw - m) - r.right; else if (r.left < m) dx = m - r.left;
+        if (dx) t.style.setProperty('--tp-fx', dx.toFixed(1) + 'px');
+      });
+    }
+    tapes.forEach(function (t) { var im = t.querySelector('img'); if (im) im.addEventListener('load', fit); });
+    window.addEventListener('load', fit); window.addEventListener('resize', fit); window.addEventListener('orientationchange', fit);
+    fit();
+  })();
+
+  /* ---------- LAZY LOAD VIDEO: video baru dimuat saat mendekati layar, dijeda saat keluar layar ---------- */
+  (function lazyVideos() {
+    var vids = [].slice.call(document.querySelectorAll('video[data-src]')); if (!vids.length) return;
+    var saver = !!(navigator.connection && navigator.connection.saveData);
+    function load(v) {
+      if (v.dataset.loaded) return; v.dataset.loaded = '1';
+      v.addEventListener('loadeddata', function () { v.classList.add('ready'); }, { once: true });
+      v.addEventListener('error', function () { v.remove(); }, { once: true });
+      v.preload = 'metadata';
+      v.src = v.dataset.src + (v.dataset.src.indexOf('#') < 0 ? '#t=0.001' : '');
+      v.load();
+    }
+    function play(v) {
+      if (v.dataset.autoplay !== '1' || saver) return;
+      v.muted = v.hasAttribute('muted') || v.muted;
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    }
+    if (!('IntersectionObserver' in window)) { vids.forEach(function (v) { load(v); play(v); }); return; }
+    var vio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { load(v); play(v); } else if (v.dataset.loaded) { v.pause(); }
+      });
+    }, { rootMargin: '250px 0px', threshold: 0.01 });
+    vids.forEach(function (v) { vio.observe(v); });
   })();
 
   /* ---------- teks kartu proyek: warna + bayangan (siteData.projectsText) ---------- */
