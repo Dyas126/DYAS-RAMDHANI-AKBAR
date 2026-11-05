@@ -6,7 +6,7 @@
 <title>Portofolio</title>
 <meta name="description" content="Portofolio profesional">
 
-<!-- Google Fonts: Archivo Black (judul tebal) + Space Grotesk (teks) -->
+<!-- Google Fonts: Archivo Black + Space Grotesk + Playfair Display + Anton -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Playfair+Display:ital,wght@1,400;1,500;1,700;1,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,71 +14,47 @@
 <!-- Tailwind CSS (CDN) -->
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- =====================================================================
-     ★★★ BAGIAN KONFIGURASI — EDIT ISI WEBSITE ANDA DI SINI SAJA ★★★
-
-     CARA EDIT:
-     • Ubah teks yang ada di dalam tanda kutip "..."
-     • JANGAN hapus tanda kutip, koma (,), kurung { } atau [ ].
-     • MENAMBAH item (layanan / proyek / testimoni / klien): salin satu blok
-       { ... } lalu tempel di bawahnya. Pastikan ada koma di antara blok.
-     • MENGHAPUS item: hapus satu blok { ... } utuh beserta komanya.
-     • GAMBAR / VIDEO: isi dengan link (https://...) atau lokasi file, contoh "assets/images/avatar.png".
-       - Gambar disimpan di folder assets/images/, video di assets/videos/.
-       - Nama file: huruf kecil semua, tanpa spasi (pakai tanda -), dan tulis PERSIS sama dengan nama file asli
-         (termasuk .png / .jpg kecil). GitHub membedakan huruf besar/kecil.
-       - Untuk gambar: file .jpg, .png, .webp, dll.
-       - Untuk video: file .mp4, .webm, .mov.
-     ===================================================================== -->
 <script>
 const siteData = {
 
-  // ---------- WARNA & TEMA (pakai kode hex, contoh "#ff0000") ----------
+  // ---------- WARNA & TEMA ----------
   theme: {
-    dark:  "#050505",   // warna gelap utama (latar hero, footer)
-    panel: "#0c0c0d",   // warna gelap kedua (panel / kartu)
-    light: "#e9eef2",   // warna terang (panel Layanan & Kontak)
-    text:  "#ececec",   // warna teks di latar gelap
-    gradient: ["#75E7ff", "#00ccff", "#00ccff"],  // 3 warna gradien tombol (biru ice, biru muda, biru muda)
-    shapes:   ["#e5e7eb", "#a3e635", "#8b5cf6", "#f59e0b", "#ec4899"]  // warna bentuk-bentuk di footer
+    dark:  "#050505",
+    panel: "#0c0c0d",
+    light: "#e9eef2",
+    text:  "#ececec",
+    gradient: ["#75E7ff", "#00ccff", "#00ccff"],
+    shapes:   ["#e5e7eb", "#a3e635", "#8b5cf6", "#f59e0b", "#ec4899"]
   },
 
-  // ---------- LOADING SCREEN (layar pembuka) ----------
+  // ---------- LOADING SCREEN ----------
   loader: {
-    enabled: true,                    // true = tampilkan loading, false = langsung buka website
-    duration: 1600,                   // lama minimal loading dalam milidetik (1000 = 1 detik)
-
-    // ----- TEKS -----
-    kicker:   "DYAS RAMDHAN",         // teks kecil di atas
-    line1:    "WELCOME TO MY",        // judul baris 1
-    line2:    "PORTOFOLIO WEBSITE",    // judul baris 2 (berwarna)
-    subtitle: "CREATIVE EXPERIENCE",  // teks kecil di bawah bar
-
-    // ----- WARNA (kode hex) -----
-    background:    "#050505",         // warna latar loading
-    kickerColor:   "#00ccff",         // warna teks kecil atas
-    titleColor:    "#f5f5f5",         // warna judul baris 1
-    line2Color:    "#f5f5f5",         // warna judul baris 2. Kosong "" = pakai gradien tema
-    subtitleColor: "#f5f5f5",         // warna teks kecil bawah
-    barColor:      "",                // warna bar loading. Kosong "" = pakai gradien tema
-
-    // ----- UKURAN TEKS -----
-    kickerSize:   "0.68rem",          // ukuran teks kecil atas
-    titleSize:    "clamp(2rem,7vw,5.6rem)",   // ukuran judul
-    subtitleSize: "0.68rem",          // ukuran teks kecil bawah
-    barWidth:     "360px",            // lebar bar loading
-
-    // ----- POSISI -----
-    align:   "center",                // horizontal: "left" | "center" | "right"
-    valign:  "center",                // vertikal:   "top"  | "center" | "bottom"
-    offsetX: "0px",                   // geser kanan(+)/kiri(-), contoh "40px" atau "-5vw"
-    offsetY: "0px"                    // geser bawah(+)/atas(-), contoh "20px" atau "-3vh"
+    enabled: true,
+    duration: 1600,
+    kicker:   "DYAS RAMDHAN",
+    line1:    "WELCOME TO MY",
+    line2:    "PORTOFOLIO WEBSITE",
+    subtitle: "CREATIVE EXPERIENCE",
+    background:    "#050505",
+    kickerColor:   "#00ccff",
+    titleColor:    "#f5f5f5",
+    line2Color:    "#f5f5f5",
+    subtitleColor: "#f5f5f5",
+    barColor:      "",
+    kickerSize:   "0.68rem",
+    titleSize:    "clamp(2rem,7vw,5.6rem)",
+    subtitleSize: "0.68rem",
+    barWidth:     "360px",
+    align:   "center",
+    valign:  "center",
+    offsetX: "0px",
+    offsetY: "0px"
   },
 
   // ---------- INFORMASI UMUM ----------
-  tabTitle: "Dyas Ramdhan — Editor & Videographer",   // judul di tab browser
-  name: "Dyas Ramdhani Akbar",                              // nama Anda (tampil di pojok kiri atas)
-  menu: [                                         // menu navigasi
+  tabTitle: "Dyas Ramdhan — Editor & Videographer",
+  name: "Dyas Ramdhani Akbar",
+  menu: [
     { text: "Tentang",   link: "#about" },
     { text: "Layanan",   link: "#services" },
     { text: "Proyek",    link: "#projects" },
@@ -86,99 +62,130 @@ const siteData = {
     { text: "Kontak",    link: "#contact" }
   ],
 
-  // ---------- HERO (bagian paling atas) ----------
+  // ---------- HERO (BAGIAN UTAMA & POSISI) ----------
   hero: {
-    title: "PORTOFOLIO",          // judul raksasa di belakang avatar (otomatis huruf besar)
-    greeting: "Hello, I'm",      // sapaan miring kecil di atas nama
-    greetingSize: 0.1,           // ukuran sapaan, kelipatan dari ukuran nama (bawaan lama 0.42; makin kecil makin mungil)
-    greetingWeight: 300,         // ketebalan sapaan: 400 = tipis, 500 = sedang, 700/800 = tebal
-    name: "DYAS",                // nama besar (titik aksen ditambahkan otomatis)
-    role: "VIDEOGRAPHER & EDITOR",   // peran (berwarna aksen)
-    tagline: "DESAIN KOMUNIKASI VISUAL",   // teks kecil di bawah peran
-    nameSize: 0.075,              // ukuran nama desktop (proporsi lebar layar)
-    nameSizeMobile: 0.11,       // ukuran nama mobile
-    leftTop: 6,                  // posisi vertikal blok kiri (%)
+    title: "PORTOFOLIO",          // Judul latar belakang
+    greeting: "Hello, I'm",      // Sapaan miring
+    greetingSize: 0.1,           
+    greetingWeight: 300,         
+    name: "DYAS",                // Nama utama
+    role: "VIDEOGRAPHER & EDITOR", 
+    tagline: "DESAIN KOMUNIKASI VISUAL",
     subtitle: "",
     button: { text: "Hubungi Saya", link: "#contact" },
     avatar: "avatar.png",
-    overlap: 1.1,                 
+
+    // =========================================================================
+    // 🖥️ PENGATURAN POSISI & UKURAN — DESKTOP (Layar Komputer / Laptop)
+    // =========================================================================
+    
+    // 1. Teks Nama & Headline Kiri
+    leftTop: 6,                  // Posisi vertikal dari atas (%)
+    leftOffsetY: 0,              // Pergeseran vertikal ekstra (px) — contoh: 20 (turun), -15 (naik)
+    textShiftX: 0.15,            // Pergeseran horizontal (+ ke kanan, - ke kiri)
+
+    // 2. Avatar / Foto Profil (Tengah)
+    avatarSize: 0.35,            // Ukuran avatar (proporsi layar)
+    avatarShiftX: 0,             // Geser horizontal (+ ke kanan, - ke kiri)
+    avatarOffsetY: 0,            // Geser vertikal (px) — contoh: 30 (turun), -20 (naik)
+
+    // 3. Blok Angka Statistik (Kanan)
+    statsTop: 6,                 // Posisi vertikal dari atas (%)
+    statsOffsetY: 0,             // Geser vertikal ekstra (px)
+    statsShiftX: -0.15,          // Geser horizontal (+ ke kanan, - ke kiri)
+
+    // 4. Judul Latar Belakang ("PORTOFOLIO")
+    titleOffsetY: 0,             // Geser vertikal judul background (px)
+
+    // =========================================================================
+    // 📱 PENGATURAN POSISI & UKURAN — MOBILE / HP (Layar HP < 768px)
+    // =========================================================================
+    
+    // 1. Teks Nama & Headline Kiri (HP)
+    leftTopMobile: 6,            // Posisi vertikal dari atas di HP (%)
+    leftOffsetYMobile: 0,        // Geser vertikal ekstra di HP (px)
+    textShiftXMobile: 0,         // Geser horizontal di HP (+ ke kanan, - ke kiri)
+
+    // 2. Avatar / Foto Profil (HP)
+    avatarSizeMobile: 0.62,      // Ukuran avatar di HP (proporsi layar HP)
+    avatarShiftXMobile: 0.17,    // Geser horizontal avatar di HP
+    avatarOffsetYMobile: 0,      // Geser vertikal avatar di HP (px)
+
+    // 3. Blok Angka Statistik (HP)
+    statsTopMobile: 6,           // Posisi vertikal statistik di HP (%)
+    statsOffsetYMobile: 0,       // Geser vertikal statistik di HP (px)
+    statsShiftXMobile: 0,        // Geser horizontal statistik di HP
+
+    // 4. Judul Latar Belakang (HP)
+    titleOffsetYMobile: 0,       // Geser vertikal judul background di HP (px)
+
+    // =========================================================================
+    // 🎨 PROPORSI & GAYA DESAIN LAINNYA
+    // =========================================================================
+    nameSize: 0.075,             // Ukuran nama di Desktop
+    nameSizeMobile: 0.11,        // Ukuran nama di HP
+    descSize: ".95rem",          
+    descSizeMobile: ".6rem",     
+    descWidth: 0.3,              
+    descTop: 69,                 
+    buttonTop: 69,               
+    buttonScale: 1,
+    overlap: 1.1,                
     titleLetterSpacing: "-.01em",
-    titleLineGap: -0.02,          
-    titleLineHeight: 0.9,         
+    titleLineGap: -0.02,         
+    titleLineHeight: 0.9,        
     titleWidth: 1,
     titleWidthMobile: 1,
-    avatarSizeMobile: 0.62,                
-    avatarSize: 0.35,             
-    descSize: ".95rem",           
-    descSizeMobile: ".6rem",      
-    descWidth: 0.3,              
-    descTop: 69,                  
-    buttonTop: 69,                
-    buttonScale: 1,
-
-    // ---------- GESER KIRI / KANAN (headline) ----------
-    textShiftX: 0.15,                // geser teks (Hello I'm, nama, peran, deskripsi, tombol) - desktop
-    avatarShiftX: 0,              // geser avatar - desktop
-    textShiftXMobile: 0,          // geser teks - handphone
-    avatarShiftXMobile: 0.17,        // geser avatar - handphone
-
-    statsShiftX: -0.15,
-
     titleColor1: "#ffffff",
     titleColor2: "#c7c7c7"
   },
 
-  // ---------- EFEK X-RAY TENGKORAK DI AVATAR (muncul saat kursor melewati avatar) ----------
+  // ---------- EFEK X-RAY AVATAR ----------
   avatarXray: {
-    enabled: true,            // true = aktifkan efek, false = matikan
-    radius: 0.3,              // ukuran lensa X-ray (kelipatan lebar avatar). Makin besar makin luas
-    radiusMobile: 0.30,       // ukuran lensa di handphone
-    softness: 1,            // kelembutan tepi lensa: 0 = tegas, 1 = sangat lembut/pudar
-    follow: 140,              // kehalusan lensa mengikuti kursor (milidetik). Makin besar makin licin/lambat
-    fade: 260,                // kecepatan lensa membesar/mengecil saat masuk/keluar (milidetik)
-    image: "xray.png",                // GANTI FOTO X-RAY: link (https://...) atau nama file, contoh "assets/images/xray.png". Kosong "" = pakai foto avatar + filter di bawah
-    imageFit: "fill",         // cara foto X-ray menyesuaikan avatar: "fill" (pas ukuran avatar) | "cover" | "contain"
-    imageFilterCustom: "none",// filter untuk foto X-ray buatan sendiri. "none" = tampil apa adanya (hanya dipakai jika "image" diisi)
-    imageOpacity: 0.95,       // kekuatan efek X-ray pada foto avatar (0 - 1)
-    imageFilter: "grayscale(1) invert(1) contrast(1.25) brightness(.7) sepia(1) hue-rotate(155deg) saturate(4)",  // gaya warna X-ray pada foto
-    color: "#7fe9ff",         // warna garis tengkorak & cahaya
-    glow: 14,                 // kekuatan cahaya tengkorak (px)
-    skullOpacity: 0,        // keterlihatan tengkorak (0 - 1)
-    skullX: 50,               // posisi tengkorak horizontal di avatar (%) — geser agar pas di kepala
-    skullY: 30,               // posisi tengkorak vertikal di avatar (%)
-    skullSize: 0.5,           // ukuran tengkorak (kelipatan lebar avatar)
-    scanlines: false,          // garis pindai halus ala layar X-ray
-    touch: true               // true = efek juga jalan saat disentuh di handphone
+    enabled: true,            
+    radius: 0.3,              
+    radiusMobile: 0.30,       
+    softness: 1,            
+    follow: 140,              
+    fade: 260,                
+    image: "xray.png",                
+    imageFit: "fill",         
+    imageFilterCustom: "none",
+    imageOpacity: 0.95,       
+    imageFilter: "grayscale(1) invert(1) contrast(1.25) brightness(.7) sepia(1) hue-rotate(155deg) saturate(4)",  
+    color: "#7fe9ff",         
+    glow: 14,                 
+    skullOpacity: 0,        
+    skullX: 50,               
+    skullY: 30,               
+    skullSize: 0.5,           
+    scanlines: false,          
+    touch: true               
   },
 
-  // ---------- LATAR BELAKANG (di bawah headline, di atas "Mari Berkenalan") ----------
+  // ---------- LATAR BELAKANG TENGAH ----------
   backgroundLayer: {
-    enabled:  true,           // true = tampilkan, false = matikan
-    image:    "bg-layer.png",             // GANTI di sini: link (https://...) atau nama file gambar, contoh "assets/images/bg-layer.png".
-                              // Kosong "" = pakai desain bawaan (cahaya warna + garis kisi)
-    size:     "100% auto",        // UKURAN gambar: "cover" (penuh) | "contain" | "800px" | "60%" | "100% auto"
-    position: "left center",   // posisi gambar: "center" | "center top" | "left center" | "50% 20%"
-    repeat:   "no-repeat",    // "no-repeat" | "repeat" (diulang seperti ubin) | "repeat-y" | "repeat-x"
-    opacity:  0.25,           // KEBENINGAN: 0 = hilang, 0.25 = samar, 1 = penuh
-    blur:     "8px",          // keburaman gambar, contoh "6px"
-    fade:     "160px",        // lebar pudar di tepi atas & bawah supaya menyatu mulus. "0px" = tanpa pudar
-    fixed:    false,          // true = gambar diam saat scroll, false = ikut scroll (diabaikan jika slide aktif)
-
-    // ----- GERAK SAAT SCROLL -----
-    slide:         true,      // true = latar bergeser mengikuti scroll, false = diam
-    slideDirection:"left",    // "left" = scroll ke bawah latar bergerak kanan→kiri (scroll ke atas kebalikannya) | "right" = sebaliknya
-    slideDistance: 1000,       // jarak geser total dalam piksel (makin besar makin jauh/cepat)
-    slideSmooth:   800,       // kehalusan dalam milidetik: 150 = responsif, 450 = halus, 800 = sangat licin/melayang
-
-    // ----- KHUSUS HANDPHONE (layar < 768px). Kosongkan "" = ikut pengaturan di atas -----
-    stickyMobile:        true,        // true = gambar selalu memenuhi layar HP saat di-scroll (tampil di semua bagian)
-    sizeMobile:          "cover",     // ukuran gambar di HP: "cover" | "contain" | "auto 100%" | "300%"
-    positionMobile:      "center",    // posisi gambar di HP
-    repeatMobile:        "no-repeat", // pengulangan gambar di HP
-    slideDistanceMobile: 300          // jarak geser di HP (px). Layar HP sempit, jadi pakai angka lebih kecil
+    enabled:  true,           
+    image:    "bg-layer.png", 
+    size:     "100% auto",    
+    position: "left center",  
+    repeat:   "no-repeat",    
+    opacity:  0.25,           
+    blur:     "8px",          
+    fade:     "160px",        
+    fixed:    false,          
+    slide:         true,      
+    slideDirection:"left",    
+    slideDistance: 1000,      
+    slideSmooth:   800,       
+    stickyMobile:        true,        
+    sizeMobile:          "cover",     
+    positionMobile:      "center",    
+    repeatMobile:        "no-repeat", 
+    slideDistanceMobile: 300          
   },
 
-  // ---------- KLIEN / PARTNER (barisan berjalan) ----------
+  // ---------- KLIEN / PARTNER ----------
   clients: [
     { name: "Ileven",          sub: "Sports clothing",   logo: "logo-ileven.png" },
     { name: "Zanissa",         sub: "Fashion",           logo: "logo-zanissa.png" },
@@ -190,7 +197,6 @@ const siteData = {
     { name: "Ahong",           sub: "Disk Jockey",       logo: "logo-ahong.png" }
   ],
 
-  // ---------- OBJEK MELAYANG DI PINGGIR ----------
   floating: {
     about: ["hide", "hide", "hide", "hide"],
     contact: ["hide", "hide"]
@@ -212,31 +218,26 @@ const siteData = {
     button: { text: "Hubungi Saya", link: "#contact" }
   },
 
-  // ---------- EFEK KACA (GLASS) KOTAK LAYANAN ----------
+  // ---------- EFEK KACA LAYANAN ----------
   servicesGlass: {
-    // ----- KACA -----
-    tint:         "255,255,255",   // warna dasar kaca dalam format R,G,B (contoh "255,255,255" putih, "120,200,255" kebiruan)
-    tintStrong:   0,            // ketebalan warna kaca di sudut kiri atas (0 = bening, 1 = pekat)
-    tintSoft:     0.01,            // ketebalan di bagian tengah (makin kecil makin bening)
-    tintEnd:      0,            // ketebalan di sudut kanan bawah
-    blur:         10,              // keburaman latar di belakang kotak (px). 0 = tanpa blur
-    saturate:     1.4,             // kepekatan warna latar di belakang kaca (1 = normal)
-    brightness:   1.05,            // kecerahan latar di belakang kaca (1 = normal)
-    borderOpacity:0.28,            // kejelasan garis tepi kaca (0 - 1)
-    radius:       "3rem",        // kebulatan sudut kotak, contoh "1rem" atau "3rem"
-
-    // ----- TULISAN -----
-    textColor:    "#ffffff",       // warna teks isi layanan (nomor, judul, deskripsi)
-    titleColor:   "#ffffff",       // warna judul "Layanan"
-    lineColor:    "rgba(255,255,255,.22)",   // warna garis pemisah antar layanan
-
-    // ----- TEKSTUR KACA BERBINTIK -----
-    texture:         false,         // true = tampilkan tekstur kaca, false = kaca polos
-    textureOpacity:  0.2,          // kekuatan tekstur (0 - 1)
-    textureSize:     50,          // ukuran ubin tekstur (px). Makin besar bintik makin lebar
-    textureDetail:   0.02,         // kerapatan bintik: makin kecil makin halus/lebar, makin besar makin rapat
-    textureStrength: 1,          // kedalaman/kontras tekstur
-    textureSeed:     4             // ganti angka ini untuk pola bintik yang berbeda
+    tint:         "255,255,255",
+    tintStrong:   0,            
+    tintSoft:     0.01,         
+    tintEnd:      0,            
+    blur:         10,           
+    saturate:     1.4,          
+    brightness:   1.05,         
+    borderOpacity:0.28,         
+    radius:       "3rem",       
+    textColor:    "#ffffff",    
+    titleColor:   "#ffffff",    
+    lineColor:    "rgba(255,255,255,.22)",
+    texture:         false,     
+    textureOpacity:  0.2,       
+    textureSize:     50,        
+    textureDetail:   0.02,      
+    textureStrength: 1,         
+    textureSeed:     4          
   },
 
   // ---------- LAYANAN ----------
@@ -256,15 +257,12 @@ const siteData = {
   projects: {
     title: "Project",
     buttonText: "Lihat Project",
-
-    // ----- PENGATURAN PEMUTAR VIDEO DI KOLOM PROYEK -----
     videoSettings: {
-      autoplay: true,   // true = video langsung berputar otomatis
-      loop: true,       // true = video berulang terus-menerus
-      muted: true,      // true = tanpa suara (diperlukan agar autoplay berhasil di semua browser)
-      controls: false   // false = sembunyikan tombol play/pause di video agar estetik
+      autoplay: true,
+      loop: true,
+      muted: true,
+      controls: false
     },
-
     items: [
       {
         client: "JarangHunting & SEERO", name: "Cinematic Event & Documentation", year: "2021-Sekarang",
@@ -306,65 +304,50 @@ const siteData = {
 
   // ---------- KARTU PROYEK: PLASTIK BURAM + SELOTIP ----------
   projectsPlastic: {
-    enabled: true,            // true = kartu proyek berupa plastik buram + selotip, false = kartu gelap biasa
-
-    // ----- PLASTIK (kaca buram) -----
-    tint:         "255,255,255",   // warna dasar plastik format R,G,B (contoh "255,255,255" putih, "170,210,255" kebiruan)
-    tintStrong:   0.17,            // ketebalan warna di sudut kiri atas (0 = bening, 1 = pekat)
-    tintSoft:     0.05,            // ketebalan di tengah (makin kecil makin bening)
-    tintEnd:      0.12,            // ketebalan di sudut kanan bawah
-    blur:         10,              // keburaman latar di belakang plastik (px). Makin besar makin buram
-    saturate:     1.25,            // kepekatan warna latar di balik plastik (1 = normal)
-    brightness:   1.06,            // kecerahan latar di balik plastik (1 = normal)
-    radius:       32,              // kebulatan sudut kartu (px)
-    rimLight:     0.5,             // kilau tipis di tepi dalam plastik (0 - 1)
-    borderOpacity:0.34,            // garis tepi plastik (0 - 1). Hanya tampil jika edgeWave = 0
-
-    // ----- KERUTAN & LIPATAN -----
-    texture:        "plastic-texture.webp",  // gambar tekstur kerutan (lokasi file). Kosong "" = tanpa kerutan
-    textureOpacity: 0.55,            // kekuatan kerutan (0 = hilang, 1 = sangat jelas)
-    textureSize:    "100% 100%",     // "100% 100%" (pas ukuran kartu) | "cover" | "800px"
-    iridescence:    0.5,             // kilau pelangi pink-hijau-biru pada plastik (0 - 1)
-
-    // ----- TEPI BERGELOMBANG -----
-    edgeWave:  0,             // tinggi gelombang di tepi kartu (px). 0 = tepi lurus/rapi, 8 = bergelombang jelas
-    edgeWaves: 4,             // jumlah gelombang sepanjang tepi (angka bulat, makin besar makin rapat)
-    edgeSeed:  3,             // ganti angka ini untuk pola gelombang yang berbeda
-
-    // ----- SELOTIP (di pojok kanan atas & kiri bawah) -----
+    enabled: true,            
+    tint:         "255,255,255",
+    tintStrong:   0.17,       
+    tintSoft:     0.05,       
+    tintEnd:      0.12,       
+    blur:         10,         
+    saturate:     1.25,       
+    brightness:   1.06,       
+    radius:       32,         
+    rimLight:     0.5,        
+    borderOpacity:0.34,       
+    texture:        "plastic-texture.webp",
+    textureOpacity: 0.55,     
+    textureSize:    "100% 100%",
+    iridescence:    0.5,      
+    edgeWave:  0,             
+    edgeWaves: 4,             
+    edgeSeed:  3,             
     tape: {
-      enabled: true,          // true = tampilkan selotip, false = tanpa selotip
-      size:        96,        // panjang selotip di desktop (px) — makin besar makin panjang
-      sizeMobile:  64,        // panjang selotip di handphone (px)
-      opacity:     1,         // keburaman selotip (0 - 1)
-      shadow:      0.5,       // kekuatan bayangan selotip (0 - 1)
-
-      // image = nama file selotip. Kosong "" = selotip di pojok itu dihilangkan
-      // x / y = geser titik tengah selotip dari pojok kartu (px). 0 = tepat menempel di pojok, positif = lebih masuk ke dalam kartu, negatif = lebih keluar
-      // rotate = kemiringan dalam derajat (-45 = miring "\" menyilang pojok)
+      enabled: true,          
+      size:        96,        
+      sizeMobile:  64,        
+      opacity:     1,         
+      shadow:      0.5,       
       topRight:   { image: "tape-1.png", x: 0, y: 0, rotate: -45 },
       bottomLeft: { image: "tape-2.png", x: 0, y: 0, rotate: -48 }
     }
   },
 
-  // ---------- TEKS KARTU PROYEK (warna & bayangan agar tetap terbaca) ----------
+  // ---------- TEKS KARTU PROYEK ----------
   projectsText: {
-    // ----- BAYANGAN TEKS -----
-    shadow:         true,                 // true = beri bayangan pada tulisan, false = tanpa bayangan
-    shadowColor:    "rgba(0,0,0,0.85)",   // warna bayangan (hitam transparan paling aman, contoh "#000000")
-    shadowBlur:     8,                    // kelembutan bayangan (px). 0 = tajam, makin besar makin menyebar
-    shadowX:        0,                    // geser bayangan ke kanan(+)/kiri(-) (px)
-    shadowY:        2,                    // geser bayangan ke bawah(+)/atas(-) (px)
-    shadowStrength: 3,                    // kekuatan bayangan: 1 = tipis, 2 = sedang, 3 = tebal (jumlah lapisan)
-
-    // ----- WARNA TEKS (kode hex, contoh "#ffffff"). Kosong "" = warna bawaan (putih) -----
-    numberColor:    "#ffffff",            // nomor proyek (01, 02, ...)
-    clientColor:    "#ffffff",            // nama klien
-    nameColor:      "#ffffff",            // judul proyek & tahun
-    descColor:      "#ffffff",            // deskripsi proyek
-    tagColor:       "#ffffff",            // label (Cinematic Video, dll)
-    buttonColor:    "#ffffff",            // tulisan tombol "Lihat Proyek"
-    nameOpacity:    0.75                  // keterangan judul & tahun: 1 = terang penuh, 0.6 = agak redup
+    shadow:         true,                 
+    shadowColor:    "rgba(0,0,0,0.85)",   
+    shadowBlur:     8,                    
+    shadowX:        0,                    
+    shadowY:        2,                    
+    shadowStrength: 3,                    
+    numberColor:    "#ffffff",            
+    clientColor:    "#ffffff",            
+    nameColor:      "#ffffff",            
+    descColor:      "#ffffff",            
+    tagColor:       "#ffffff",            
+    buttonColor:    "#ffffff",            
+    nameOpacity:    0.75                  
   },
 
   // ---------- TESTIMONI ----------
@@ -387,7 +370,7 @@ const siteData = {
     subtitle: "Tertarik atau butuh bantuan? Kirim pesan dan saya akan membalas secepatnya.",
     email: "dyasramdhan026@gmail.com",
     phone: "+62 85223223805",
-    whatsapp: "6285223223805",   // nomor WA tujuan (format internasional, tanpa + / spasi / 0 di depan)
+    whatsapp: "6285223223805",
     address: "Kota Tasikmalaya, Indonesia",
     formEndpoint: "",
     submitText: "Kirim",
@@ -438,7 +421,6 @@ const siteData = {
   a { color:inherit; text-decoration:none; }
   img, video { max-width:100%; }
 
-  /* ---------- HINT BADGES & MICRO-COPY ---------- */
   .hint-badge {
     display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.65rem;
     border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px;
@@ -457,11 +439,9 @@ const siteData = {
     50% { opacity: 1; transform: scale(1.3); }
   }
 
-  /* ---------- animasi masuk saat scroll ---------- */
   .js .reveal { opacity:0; transform:translateY(40px); transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s), transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s); }
   .js .reveal.in { opacity:1; transform:none; }
 
-  /* ---------- judul outline ---------- */
   .h-out { font-family:'Archivo Black','Arial Black',Impact,sans-serif; font-weight:900; text-transform:uppercase; line-height:.98; letter-spacing:-.02em;
            font-size:min(9.5vw,8.5rem); text-wrap:balance; overflow-wrap:anywhere;
            color:transparent; -webkit-text-stroke:2px rgba(255,255,255,.55);
@@ -474,7 +454,6 @@ const siteData = {
   .h-out.on-light.in { color:#b9c2cb; -webkit-text-stroke-color:#9aa5af; }
   .h-out.mixed { text-transform:none; font-size:min(8vw,6rem); }
 
-  /* ---------- tombol ---------- */
   .btn-grad { display:inline-flex; align-items:center; gap:.7rem; padding:1rem 2.1rem; border-radius:999px; border:2px solid transparent; cursor:pointer;
               background:linear-gradient(var(--dark),var(--dark)) padding-box, linear-gradient(90deg,var(--g1),var(--g2),var(--g3)) border-box;
               color:#fff; font-weight:700; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
@@ -489,7 +468,6 @@ const siteData = {
           transition:background .3s, color .3s, transform .3s; }
   .pill:hover { background:#fff; color:#000; transform:scale(1.05); }
 
-  /* ---------- marquee ---------- */
   .marquee { overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
   .mq-track { display:flex; width:max-content; animation:mq var(--dur,45s) linear infinite; }
   .marquee.rev .mq-track { animation-direction:reverse; }
@@ -502,13 +480,11 @@ const siteData = {
                   background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3)); flex:none; }
   .client img { height:2.4rem; width:auto; object-fit:contain; }
 
-  /* ---------- media / ilustrasi abstrak / video ---------- */
   .media { position:relative; overflow:hidden; width:100%; height:100%; }
   .media img, .media video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.7,.2,1); }
   .media video[data-src] { opacity:0; transition:transform .8s cubic-bezier(.2,.7,.2,1), opacity .6s ease; }
   .media video[data-src].ready { opacity:1; }
 
-  /* ---------- EFEK BLUR-TO-FOCUS ---------- */
   .footer-blur-container { display: inline-block; cursor: default; user-select: none; perspective: 1000px; }
   .footer-word { display: inline-block; white-space: nowrap; }
   .footer-blur-char {
@@ -536,16 +512,16 @@ const siteData = {
     filter:blur(var(--b,var(--fb-blur,12px))) !important; opacity:var(--o,var(--fb-opacity,.35)) !important;
     transform:translate3d(0,var(--y,0px),0) scale(var(--sc,1)) !important; }
 
-  /* ---------- hero ---------- */
+  /* ---------- HERO & CUSTOM POSISI ---------- */
   .hero-title { font-family:'Anton','Archivo Black',Impact,sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:var(--hls,-.085em);
-                margin:0; position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; font-size:0; line-height:0; }
+                margin:0; position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; font-size:0; line-height:0; transform:translateY(var(--toy, 0px)); }
   .hero-line { display:block; width:max-content; white-space:nowrap; font-size:var(--fs,100px); line-height:var(--hlh,.8); }
   .hero-line + .hero-line { margin-top:calc(var(--fs,100px) * var(--hgap,-.02)); }
   .hero-char { display:inline-block; background:linear-gradient(180deg,var(--tc1,var(--g1)) 10%,var(--tc2,var(--g2)) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; }
   .hero-title .footer-blur-char:hover, .hero-title .footer-blur-char.focused { color:transparent !important; -webkit-text-fill-color:transparent; }
   .stage { position:relative; display:flex; justify-content:center; align-items:flex-start; --aw:min(70vw,720px); --hs:.78rem; --dw:40%; margin-top:-2vw; }
-  .stage-av { position:relative; z-index:3; width:var(--aw); left:var(--ax,0px); }
-  .hero-left { position:absolute; z-index:6; left:calc(var(--sx,0px) + var(--tx,0px)); top:var(--lty,6%); width:var(--dw); display:flex; flex-direction:column; align-items:flex-start; text-align:left; }
+  .stage-av { position:relative; z-index:3; width:var(--aw); left:var(--ax,0px); transform:translateY(var(--aoy, 0px)); }
+  .hero-left { position:absolute; z-index:6; left:calc(var(--sx,0px) + var(--tx,0px)); top:calc(var(--lty,6%) + var(--loy, 0px)); width:var(--dw); display:flex; flex-direction:column; align-items:flex-start; text-align:left; }
   .hero-hello { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:var(--ghw,400); font-size:calc(var(--ns,60px) * var(--ghs,.3)); line-height:1; color:#fff; letter-spacing:-.01em; }
   .hero-name { display:block; margin-top:.08em; font-family:'Anton','Archivo Black',Impact,sans-serif; font-weight:400; text-transform:uppercase; font-size:var(--ns,60px); line-height:1; letter-spacing:.01em; color:#fff; white-space:nowrap; }
   .hero-name b { font-weight:inherit; color:var(--g2); }
@@ -555,11 +531,11 @@ const siteData = {
   .hero-desc { position:static; margin:1.1em 0 0; width:100%; text-align:left; font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; font-size:var(--hs); letter-spacing:0; text-transform:none; line-height:1.55; opacity:.85; }
   .hero-left .btn-grad { margin-top:1.5em; font-size:calc(.78rem * var(--bs,1)); padding:calc(1rem * var(--bs,1)) calc(2.1rem * var(--bs,1)); }
   @media (max-width:767px) { .hero-left .btn-grad { margin-top:1em; padding:calc(.6rem * var(--bs,1)) calc(1rem * var(--bs,1)); font-size:calc(.6rem * var(--bs,1)); } }
-  .hero-right { position:absolute; z-index:6; right:calc(var(--sx,0px) - var(--stx,0px)); top:var(--lty,6%); display:none; flex-direction:column; gap:1.6rem; text-align:left; }
+  .hero-right { position:absolute; z-index:6; right:calc(var(--sx,0px) - var(--stx,0px)); top:calc(var(--rty, var(--lty,6%)) + var(--soy, 0px)); display:none; flex-direction:column; gap:1.6rem; text-align:left; }
   @media (min-width:768px) { .hero-right { display:flex; } }
   .hero-right .v { font-family:'Archivo Black','Arial Black',Impact,sans-serif; font-size:calc(var(--ns,60px) * .75); line-height:1; color:var(--g2); }
   .hero-right .l { margin-top:.35rem; font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; opacity:.7; }
-  /* ---------- efek X-ray avatar ---------- */
+
   .xray { position:relative; width:100%; line-height:0; }
   .xray-layer { position:absolute; inset:0; pointer-events:none; overflow:hidden; opacity:var(--xo,0); will-change:opacity,mask-image;
                 -webkit-mask-image:radial-gradient(circle var(--xr,.1px) at var(--xx,50%) var(--xy,50%),#000 0,#000 var(--xs,40%),transparent 100%);
@@ -571,10 +547,8 @@ const siteData = {
   .xray-scan { position:absolute; inset:0; mix-blend-mode:screen; opacity:.35;
                background:repeating-linear-gradient(0deg,rgba(127,233,255,.0) 0,rgba(127,233,255,.0) 2px,rgba(127,233,255,.28) 3px,rgba(127,233,255,.0) 4px); }
 
-  /* ---------- latar belakang tengah (antara headline & kontak) ---------- */
   .bg-zone { position:relative; isolation:isolate; background:linear-gradient(var(--dark),var(--panel) 14rem); }
   .bg-zone > section { position:relative; z-index:1; background:transparent !important; }
-  /* .bg-clip = wadah tinggi (tanpa overflow, supaya kartu Proyek tetap sticky); .bg-frame = bingkai yang memotong gambar lebar agar halaman tidak melebar di HP */
   .bg-clip { position:absolute; inset:0; z-index:0; pointer-events:none;
              -webkit-mask-image:linear-gradient(to bottom,transparent,#000 var(--bgfade,160px),#000 calc(100% - var(--bgfade,160px)),transparent);
              mask-image:linear-gradient(to bottom,transparent,#000 var(--bgfade,160px),#000 calc(100% - var(--bgfade,160px)),transparent); }
@@ -589,9 +563,7 @@ const siteData = {
   .glow { position:absolute; left:calc(50% + var(--ax,0px)); top:30%; width:70%; aspect-ratio:1; transform:translate(-50%,-30%); border-radius:50%; filter:blur(90px); opacity:.45; z-index:0;
           background:radial-gradient(circle,var(--g1),var(--g2) 55%,transparent 70%); }
 
-  /* ---------- panel bertumpuk ---------- */
   .panel { position:relative; z-index:2; margin-top:-2.5rem; border-radius:2.5rem 2.5rem 0 0; background:var(--panel); border-top:1px solid rgba(255,255,255,.16); }
-  /* ---------- panel Layanan: kaca buram (frosted glass) ---------- */
   .light-panel { position:relative; isolation:isolate; color:var(--gl-text,#fff); border-radius:var(--gl-r,2.5rem);
                  background:linear-gradient(135deg,rgba(var(--gl-rgb,255,255,255),var(--gl-a1,.22)),rgba(var(--gl-rgb,255,255,255),var(--gl-a2,.06)) 45%,rgba(var(--gl-rgb,255,255,255),var(--gl-a3,.14)));
                  -webkit-backdrop-filter:blur(var(--gl-blur,26px)) saturate(var(--gl-sat,1.4)) brightness(var(--gl-bri,1.05)); backdrop-filter:blur(var(--gl-blur,26px)) saturate(var(--gl-sat,1.4)) brightness(var(--gl-bri,1.05));
@@ -608,14 +580,12 @@ const siteData = {
   .eyebrow { display:flex; align-items:center; gap:.8rem; font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; }
   .eyebrow::before { content:""; width:2.2rem; height:2px; background:currentColor; }
 
-  /* ---------- bentuk melayang ---------- */
   .px { position:absolute; will-change:transform; transition:transform .25s ease-out; pointer-events:none; }
   .float { animation:float var(--t,7s) ease-in-out infinite; }
   .float svg { width:100%; height:auto; display:block; filter:drop-shadow(0 18px 24px rgba(0,0,0,.45)); }
   .float .fimg { width:100%; aspect-ratio:1; object-fit:cover; display:block; border-radius:18%; filter:drop-shadow(0 18px 24px rgba(0,0,0,.45)); }
   @keyframes float { 0%,100% { transform:translateY(0) rotate(var(--r,0deg)); } 50% { transform:translateY(-20px) rotate(calc(var(--r,0deg) + 8deg)); } }
 
-  /* ---------- layanan ---------- */
   .svc { position:relative; display:grid; grid-template-columns:3.2rem 1fr; gap:.6rem 1rem; align-items:center; padding:1.7rem 0; border-bottom:1px solid rgba(0,0,0,.2); transition:padding .45s cubic-bezier(.2,.7,.2,1), color .45s; cursor:default; }
   .svc::before { content:""; position:absolute; inset:0 -1rem; background:#0a0a0a; border-radius:1.25rem; transform:scaleY(0); transform-origin:bottom; transition:transform .5s cubic-bezier(.7,0,.2,1); z-index:0; }
   .svc > * { position:relative; z-index:1; }
@@ -631,34 +601,26 @@ const siteData = {
     .svc .arrow { display:block; text-align:right; }
   }
 
-  /* ---------- proyek (kartu menumpuk) ---------- */
-  /* ---------- kartu Proyek = plastik buram + selotip (semua pengaturan: siteData.projectsPlastic) ---------- */
   .pcard { position:sticky; top:calc(5rem + var(--i)*3.6rem); margin-bottom:2.5rem; isolation:isolate; padding:1.1rem; border-radius:var(--pl-r,2rem); }
   @media (min-width:768px) { .pcard { padding:1.4rem 1.6rem 1.6rem; } }
   .pcard > * { position:relative; z-index:1; }
-  /* mode biasa (jika projectsPlastic.enabled = false) */
   .pcard.flat { border:1px solid rgba(255,255,255,.3); border-radius:2rem; background:var(--panel); box-shadow:0 -24px 40px -24px rgba(0,0,0,.9); }
-  /* lembaran plastik */
   .pcard > .plastic { position:absolute; inset:calc(var(--pl-amp,0px) * -1); z-index:0; pointer-events:none; border-radius:var(--pl-r,2rem);
            background:linear-gradient(135deg,rgba(var(--pl-rgb,255,255,255),var(--pl-a1,.17)),rgba(var(--pl-rgb,255,255,255),var(--pl-a2,.05)) 42%,rgba(var(--pl-rgb,255,255,255),var(--pl-a3,.12)));
            -webkit-backdrop-filter:blur(var(--pl-blur,22px)) saturate(var(--pl-sat,1.25)) brightness(var(--pl-bri,1.06)); backdrop-filter:blur(var(--pl-blur,22px)) saturate(var(--pl-sat,1.25)) brightness(var(--pl-bri,1.06));
            box-shadow:inset 0 1px 0 rgba(255,255,255,var(--pl-rim,.5)), inset 2px 2px 16px rgba(255,255,255,calc(var(--pl-rim,.5) * .45)), inset -8px -8px 30px rgba(170,255,225,calc(var(--pl-rim,.5) * .2)), inset 10px 0 26px rgba(255,150,225,calc(var(--pl-rim,.5) * .2)); }
   .pcard > .plastic.border { border:1px solid rgba(255,255,255,var(--pl-bo,.34)); }
-  /* kerutan / lipatan (gambar tekstur) */
   .pcard > .plastic::before { content:""; position:absolute; inset:0; border-radius:inherit; opacity:var(--pl-to,.8);
            background-image:var(--pl-tex,none); background-size:var(--pl-ts,100% 100%); background-position:center; background-repeat:no-repeat; }
-  /* kilau pelangi tipis */
   .pcard > .plastic::after { content:""; position:absolute; inset:0; border-radius:inherit; mix-blend-mode:screen; opacity:var(--pl-ir,.5);
            background:linear-gradient(115deg,transparent 8%,rgba(255,140,215,.20) 22%,rgba(150,255,210,.16) 30%,rgba(140,190,255,.18) 38%,transparent 52%),
                       linear-gradient(295deg,transparent 55%,rgba(255,170,230,.16) 70%,rgba(160,255,215,.14) 80%,transparent 94%),
                       radial-gradient(60% 40% at 78% 8%,rgba(255,255,255,.18),transparent 70%); }
-  /* selotip (gambar hasil potongan foto referensi) */
   .pcard > .tape { position:absolute; z-index:4; display:block; pointer-events:none; opacity:var(--tp-o,1); filter:drop-shadow(0 3px 4px rgba(0,0,0,var(--tp-sh,.5))); }
   .pcard > .tape img { display:block; height:var(--tp-size,96px); width:auto; max-width:none; }
   .pcard > .tape.tr { top:0; right:0; transform:translate(calc(50% - var(--tp-tr-x,0px) + var(--tp-fx,0px)), calc(-50% + var(--tp-tr-y,0px))) rotate(var(--tp-tr-r,-45deg)); }
   .pcard > .tape.bl { bottom:0; left:0; transform:translate(calc(-50% + var(--tp-bl-x,0px) + var(--tp-fx,0px)), calc(50% - var(--tp-bl-y,0px))) rotate(var(--tp-bl-r,-48deg)); }
   @media (max-width:767px) { .pcard > .tape img { height:var(--tp-size-m,64px); } }
-  /* teks kartu Proyek: bayangan + warna (diatur di siteData.projectsText) */
   .pcard { text-shadow:var(--pt-shadow,none); }
   .pcard .p-client, .pcard .p-name { padding:var(--pt-pad-y,12px) var(--pt-pad-x,14px); margin:calc(var(--pt-pad-y,12px) * -1) calc(var(--pt-pad-x,14px) * -1); }
   .pcard .p-no { color:var(--pt-no,inherit); }
@@ -671,7 +633,6 @@ const siteData = {
   .collage { display:grid; grid-template-columns:2fr 1fr; grid-template-rows:1fr 1fr; gap:.7rem; height:clamp(210px,34vw,420px); margin-top:1.1rem; }
   .collage > div { border-radius:1.25rem; overflow:hidden; border:1px solid rgba(255,255,255,.15); }
   .collage > div:first-child { grid-row:span 2; }
-  /* HP: kolase proyek dibuat landscape (1 gambar lebar di atas, 2 gambar landscape di bawah) */
   @media (max-width:767px) {
     .collage { grid-template-columns:1fr 1fr; grid-template-rows:none; grid-auto-rows:auto; height:auto; }
     .collage > div { position:relative; aspect-ratio:16/9; }
@@ -680,7 +641,6 @@ const siteData = {
   }
   .pcard:hover .media img, .pcard:hover .media video { transform:scale(1.05); }
 
-  /* ---------- testimoni ---------- */
   .tcard { height:100%; border:1px solid rgba(255,255,255,.28); border-radius:1.75rem; padding:1.3rem; background:rgba(255,255,255,.015); display:flex; flex-direction:column; gap:1.2rem;
            transition:transform .5s cubic-bezier(.2,.7,.2,1), border-color .4s, background .4s, box-shadow .4s; }
   .tcard:hover { transform:translateY(-8px); border-color:var(--g2); background:rgba(255,255,255,.05); box-shadow:0 24px 50px -24px var(--g1); }
@@ -688,7 +648,6 @@ const siteData = {
             background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3)); border:2px solid rgba(255,255,255,.5); }
   .avatar img { width:100%; height:100%; object-fit:cover; }
 
-  /* ---------- kontak ---------- */
   .field { width:100%; background:transparent; border:0; border-bottom:2px solid rgba(0,0,0,.25); padding:1rem 0; font:inherit; font-size:1.05rem; color:#0a0a0a; outline:none; transition:border-color .3s; border-radius:0; }
   .field:focus { border-bottom-color:#0a0a0a; }
   .field::placeholder { color:rgba(0,0,0,.45); text-transform:uppercase; letter-spacing:.1em; font-size:.8rem; font-weight:600; }
@@ -699,7 +658,6 @@ const siteData = {
   .ulink { background:linear-gradient(currentColor,currentColor) 0 100%/0 3px no-repeat; transition:background-size .4s; }
   .ulink:hover { background-size:100% 3px; }
 
-  /* ---------- footer ---------- */
   .foot { position:relative; z-index:2; margin-top:-2.5rem; border-radius:2.5rem 2.5rem 0 0; background:var(--dark); padding:3.5rem 0 1.25rem; }
   .shapes { display:grid; grid-template-columns:repeat(4,1fr); gap:.6rem; margin-top:3.5rem; }
   @media (min-width:768px) { .shapes { grid-template-columns:repeat(8,1fr); gap:.4rem; } }
@@ -713,13 +671,11 @@ const siteData = {
   #hdr.hs.hl { background:rgba(233,238,242,.75); background:color-mix(in srgb,var(--light) 78%,transparent); color:#0a0a0a; }
   #hdr.mo, #hdr.hs.mo, #hdr.hs.hl.mo { background:transparent; color:#fff; -webkit-backdrop-filter:none; backdrop-filter:none; }
 
-  /* ---------- menu mobile ---------- */
   #mmenu { transition:opacity .4s, visibility .4s; opacity:0; visibility:hidden; }
   #mmenu.open { opacity:1; visibility:visible; }
   #mmenu a { transform:translateY(30px); opacity:0; transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s; }
   #mmenu.open a { transform:none; opacity:1; }
 
-  /* ---------- smooth scroll + intro loader ---------- */
   html { scroll-behavior:smooth; scroll-padding-top:5rem; }
   body { overscroll-behavior-y:none; }
   #app { opacity:0; transition:opacity .8s ease .12s; }
@@ -754,7 +710,6 @@ const siteData = {
   .loader-line i { display:block; height:100%; width:100%; background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3)); transform:scaleX(0); transform-origin:left; animation:loaderFill var(--lbd,1.6s) cubic-bezier(.65,0,.35,1) forwards; }
   @keyframes loaderFill { to { transform:scaleX(1); } }
 
-  /* ---------- animasi ---------- */
   .js .hero-anim { opacity:0; }
   body.page-ready .hero-title.hero-anim  { animation:heroTitleIn 1.5s cubic-bezier(.16,1,.3,1) .15s both; }
   body.page-ready .hero-av-in.hero-anim  { animation:heroAvatarIn 1.7s cubic-bezier(.16,1,.3,1) .35s both; }
@@ -822,7 +777,6 @@ const siteData = {
   var has = function (a) { return Array.isArray(a) && a.length > 0; };
   var pad = function (n) { return String(n + 1).padStart(2, '0'); };
 
-  /* ---------- loading screen ---------- */
   var LD = (function () {
     var d = { enabled: true, duration: 1600, kicker: '', line1: '', line2: '', subtitle: '', background: '#050505', kickerColor: '#f5f5f5', titleColor: '#f5f5f5',
               line2Color: '', subtitleColor: '#f5f5f5', barColor: '', kickerSize: '.68rem', titleSize: 'clamp(2rem,7vw,5.6rem)', subtitleSize: '.68rem', barWidth: '360px',
@@ -852,7 +806,6 @@ const siteData = {
       '<span class="loader-percent">' + esc(LD.subtitle) + '</span>';
   })();
 
-  /* ---------- ilustrasi abstrak otomatis ---------- */
   var ARTS = [['#ff7a18', '#ffd200', '#ff3d77'], ['#12c2e9', '#c471ed', '#f64f59'], ['#00c9a7', '#845ec2', '#ffc75f'], ['#f9d423', '#ff4e50', '#fc67fa'],
               ['#4facfe', '#00f2fe', '#43e97b'], ['#fa709a', '#fee140', '#30cfd0'], ['#a18cd1', '#fbc2eb', '#ff9a9e'], ['#ff9a44', '#fc6076', '#2af598']];
   function art(i) {
@@ -862,7 +815,6 @@ const siteData = {
            'radial-gradient(circle at 50% 105%,' + c[2] + ' 0,transparent 62%),#1b1233';
   }
 
-  /* ---------- PENCETAK MEDIA GAMBAR ATAU VIDEO ---------- */
   function media(src, i, alt) {
     var vs = (S.projects && S.projects.videoSettings) || { autoplay: true, loop: true, muted: true, controls: false };
     var isVideo = src && (/\.(mp4|webm|mov)(\?.*)?$/i.test(src));
@@ -875,8 +827,6 @@ const siteData = {
         if (vs.loop !== false) attrs += ' loop';
         if (vs.muted !== false) attrs += ' muted';
         if (vs.controls) attrs += ' controls';
-
-        /* lazy load: src baru dipasang (data-src) saat video mendekati layar */
         content = '<video data-src="' + esc(src) + '" ' + attrs + ' style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"></video>';
       } else {
         content = '<img src="' + esc(src) + '" alt="' + esc(alt || '') + '" loading="lazy" onerror="this.remove()">';
@@ -886,7 +836,6 @@ const siteData = {
     return '<div class="media" style="' + art(i) + '">' + content + '</div>';
   }
 
-  /* ---------- bentuk 3D (SVG) ---------- */
   var uid = 0;
   var SH = {
     flower: function () {
@@ -914,7 +863,6 @@ const siteData = {
     }
   };
 
-  /* objek melayang */
   var FL = S.floating || {}, FA = FL.about || [], FC = FL.contact || [];
   function fl(src, shape) {
     if (src === 'hide') return '';
@@ -926,7 +874,6 @@ const siteData = {
     return '<div class="px" data-depth="' + depth + '" style="' + style + '"><div class="float" style="--r:' + r + 'deg;--t:' + t + 's">' + fl(src, shape) + '</div></div>';
   }
 
-  /* avatar bawaan */
   function avatarSVG() {
     return '<svg viewBox="0 0 420 470" aria-label="Avatar" role="img" style="display:block;width:100%;height:auto">' +
       '<defs><radialGradient id="sk" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#ffd8bb"/><stop offset=".6" stop-color="#f2a97c"/><stop offset="1" stop-color="#c97b52"/></radialGradient>' +
@@ -946,7 +893,6 @@ const siteData = {
       '<ellipse cx="146" cy="112" rx="42" ry="17" fill="#fff" opacity=".2" transform="rotate(-24 146 112)"/></svg>';
   }
 
-  /* Blur-to-focus footer */
   function buildFooterBlurText(textStr) {
     var cfg = S.footerBlurText || {};
     if (cfg.enabled === false) return esc(textStr);
@@ -962,7 +908,6 @@ const siteData = {
     return '<span class="footer-blur-container" style="--fb-blur:' + esc(cfg.initialBlur || '12px') + ';--fb-opacity:' + esc(cfg.initialOpacity || 0.35) + '">' + wordsHTML + '</span>';
   }
 
-  /* ================= SECTIONS ================= */
   function navHTML() {
     var links = (S.menu || []).map(function (m) { return '<a class="ulink pb-1" href="' + esc(m.link) + '">' + esc(m.text) + '</a>'; }).join('');
     var mlinks = (S.menu || []).map(function (m, i) { return '<a href="' + esc(m.link) + '" class="font-display uppercase text-[2.6rem] leading-none py-3 hover:text-[color:var(--g2)]" style="transition-delay:' + (i * .06) + 's">' + esc(m.text) + '</a>'; }).join('');
@@ -993,7 +938,6 @@ const siteData = {
     }).join('') + '</div>';
   }
 
-  /* X-ray avatar: bungkus avatar + lapisan tengkorak */
   function skullSVG() {
     return '<svg class="xray-skull" viewBox="0 0 200 240" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
       '<defs><radialGradient id="xbone" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="currentColor" stop-opacity=".30"/><stop offset="1" stop-color="currentColor" stop-opacity=".05"/></radialGradient></defs>' +
@@ -1161,11 +1105,9 @@ const siteData = {
       '</div></footer>';
   }
 
-  /* ================= RENDER ================= */
   $('#app').innerHTML = navHTML() + '<main>' + heroHTML() + '<div class="bg-zone" id="bgZone"><div class="bg-clip" id="bgClip" aria-hidden="true"><div class="bg-frame" id="bgFrame"><div class="bg-layer" id="bgLayer"></div></div></div>' + logosHTML() + aboutHTML() + servicesHTML() + projectsHTML() + testimonialsHTML() + '</div>' + contactHTML() + '</main>' + footerHTML();
   $('#yr').textContent = new Date().getFullYear();
 
-  /* Latar belakang tengah */
   (function () {
     var B = S.backgroundLayer || {}, clip = $('#bgClip'), layer = $('#bgLayer'), frame = $('#bgFrame'), zone = $('#bgZone');
     if (!layer) return;
@@ -1221,7 +1163,6 @@ const siteData = {
     window.addEventListener('resize', function () { layout(); cur = null; wake(); });
   })();
 
-  /* ================= INTERAKSI ================= */
   var textTargets = $$('section h2, section h3, section p, section li, section .eyebrow, section .btn-grad, section .pill, footer h4, footer li, footer a');
   textTargets.forEach(function (el, i) {
     if (!el.classList.contains('reveal') && !el.classList.contains('h-out')) {
@@ -1252,11 +1193,12 @@ const siteData = {
     document.body.classList.add('page-ready');
     if (loader) setTimeout(function () { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 1300);
   }
-  // Loading selesai tepat sesuai LD.duration (1600 ms), tanpa menunggu semua gambar/video selesai dimuat
   setTimeout(finishLoader, Math.max(0, minWait - (Date.now() - loaderStart)));
 
   var ht = $('#heroTitle'), stage = $('.stage'), heroLines = $$('.hero-line');
   function num(v, d) { return (typeof v === 'number' && isFinite(v)) ? v : d; }
+  
+  // FUNGSI UTAMA KALKULASI & PENERAPAN POSISI HERO
   function fitHero() {
     if (!ht) return;
     var H = S.hero || {};
@@ -1265,38 +1207,49 @@ const siteData = {
     var mob = window.innerWidth < 768;
     var tw = avail * (mob ? num(H.titleWidthMobile, .96) : num(H.titleWidth, .8));
     var hs = document.getElementById('top').style;
+    
     if (H.titleColor1) hs.setProperty('--tc1', H.titleColor1); else hs.removeProperty('--tc1');
     if (H.titleColor2) hs.setProperty('--tc2', H.titleColor2); else hs.removeProperty('--tc2');
+    
     hs.setProperty('--hls', H.titleLetterSpacing || '-.085em');
     hs.setProperty('--hgap', num(H.titleLineGap, -.02));
     hs.setProperty('--hlh', num(H.titleLineHeight, .8));
     hs.setProperty('--bs', num(H.buttonScale, 1));
     hs.setProperty('--dty', num(H.descTop, 69) + '%');
     hs.setProperty('--bty', num(H.buttonTop, 69) + '%');
-    hs.setProperty('--lty', num(H.leftTop, 6) + '%');
+    
+    // PENERAPAN VARIABEL POSISI VERTIKAL & HORIZONTAL (DESKTOP / MOBILE)
+    hs.setProperty('--lty', (mob ? num(H.leftTopMobile, H.leftTop) : num(H.leftTop, 6)) + '%');
+    hs.setProperty('--loy', (mob ? num(H.leftOffsetYMobile, H.leftOffsetY) : num(H.leftOffsetY, 0)) + 'px');
+    hs.setProperty('--rty', (mob ? num(H.statsTopMobile, H.statsTop) : num(H.statsTop, 6)) + '%');
+    hs.setProperty('--soy', (mob ? num(H.statsOffsetYMobile, H.statsOffsetY) : num(H.statsOffsetY, 0)) + 'px');
+    hs.setProperty('--aoy', (mob ? num(H.avatarOffsetYMobile, H.avatarOffsetY) : num(H.avatarOffsetY, 0)) + 'px');
+    hs.setProperty('--toy', (mob ? num(H.titleOffsetYMobile, H.titleOffsetY) : num(H.titleOffsetY, 0)) + 'px');
+
     heroLines.forEach(function (ln) {
       ln.style.setProperty('--fs', '100px');
       var w = ln.offsetWidth;
       if (w > 0) ln.style.setProperty('--fs', Math.min(100 * tw / w, 900) + 'px');
     });
-    stage.style.setProperty('--aw', (avail * (mob ? num(H.avatarSizeMobile, .62) : num(H.avatarSize, .46))) + 'px');
+    
+    stage.style.setProperty('--aw', (avail * (mob ? num(H.avatarSizeMobile, .62) : num(H.avatarSize, .35))) + 'px');
     stage.style.setProperty('--sx', ((avail - tw) / 2) + 'px');
     stage.style.setProperty('--tx', (avail * (mob ? num(H.textShiftXMobile, 0) : num(H.textShiftX, 0))) + 'px');
-    stage.style.setProperty('--stx', (avail * num(H.statsShiftX, 0)) + 'px');
+    stage.style.setProperty('--stx', (avail * (mob ? num(H.statsShiftXMobile, H.statsShiftX) : num(H.statsShiftX, 0))) + 'px');
     stage.style.setProperty('--ghs', num(H.greetingSize, .3));
     stage.style.setProperty('--ghw', num(H.greetingWeight, 400));
     stage.style.setProperty('--ax', (avail * (mob ? num(H.avatarShiftXMobile, 0) : num(H.avatarShiftX, 0))) + 'px');
-    stage.style.setProperty('--hs', (window.innerWidth < 768 ? (H.descSizeMobile || '.6rem') : (H.descSize || '.78rem')));
+    stage.style.setProperty('--hs', (mob ? (H.descSizeMobile || '.6rem') : (H.descSize || '.78rem')));
     stage.style.setProperty('--dw', (tw * (mob ? .46 : num(H.descWidth, .3))) + 'px');
     stage.style.setProperty('--ns', (tw * (mob ? num(H.nameSizeMobile, .11) : num(H.nameSize, .075))) + 'px');
     stage.style.marginTop = (-ht.offsetHeight * num(H.overlap, 1)) + 'px';
   }
+
   fitHero(); window.addEventListener('resize', fitHero);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHero);
   window.addEventListener('load', fitHero);
   if ('ResizeObserver' in window && ht) new ResizeObserver(fitHero).observe(ht.parentElement);
 
-  /* ---------- efek kaca kotak Layanan ---------- */
   (function initGlass() {
     var G = S.servicesGlass || {}, el = $('#services .light-panel'); if (!el) return;
     var s = el.style, n = function (v, d) { v = parseFloat(v); return isFinite(v) ? v : d; };
@@ -1322,7 +1275,6 @@ const siteData = {
     s.setProperty('--gl-ts', size + 'px'); s.setProperty('--gl-to', n(G.textureOpacity, .7));
   })();
 
-  /* ---------- efek X-ray tengkorak di avatar ---------- */
   (function initXray() {
     var X = S.avatarXray || {};
     if (X.enabled === false) return;
@@ -1376,7 +1328,6 @@ const siteData = {
     }
     function wake() { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
 
-    /* Efek "Intip" Otomatis (Micro-Animation Preview) */
     var autoPeeking = false, autoPeekDone = false;
     function triggerAutoPeek() {
       if (active || autoPeekDone) return;
@@ -1408,7 +1359,6 @@ const siteData = {
 
     setTimeout(triggerAutoPeek, 2000);
 
-    /* Trigger Otomatis saat di-scroll di Mobile / HP */
     if ('IntersectionObserver' in window) {
       var xobs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
@@ -1437,7 +1387,6 @@ const siteData = {
     }
   })();
 
-  /* ---------- kartu proyek: plastik + selotip (membaca siteData.projectsPlastic) ---------- */
   function plasticEdge(w, h, r, amp, waves, ph) {
     var hp = Math.PI / 2, segs = [], P = 0;
     function line(x0, y0, x1, y1, nx, ny) { segs.push({ t: 0, x0: x0, y0: y0, x1: x1, y1: y1, nx: nx, ny: ny, L: Math.hypot(x1 - x0, y1 - y0) }); }
@@ -1489,7 +1438,6 @@ const siteData = {
     });
   })();
 
-  /* ---------- selotip: jaga agar tidak keluar layar (mencegah halaman melebar di HP) ---------- */
   (function fitTapes() {
     var sec = $('#projects'); if (!sec) return;
     var tapes = [].slice.call(sec.querySelectorAll('.pcard > .tape')); if (!tapes.length) return;
@@ -1508,7 +1456,6 @@ const siteData = {
     fit();
   })();
 
-  /* ---------- LAZY LOAD VIDEO: video baru dimuat saat mendekati layar, dijeda saat keluar layar ---------- */
   (function lazyVideos() {
     var vids = [].slice.call(document.querySelectorAll('video[data-src]')); if (!vids.length) return;
     var saver = !!(navigator.connection && navigator.connection.saveData);
@@ -1535,7 +1482,6 @@ const siteData = {
     vids.forEach(function (v) { vio.observe(v); });
   })();
 
-  /* ---------- teks kartu proyek: warna + bayangan (siteData.projectsText) ---------- */
   (function initProjectsText() {
     var X = S.projectsText || {}, sec = $('#projects'); if (!sec) return;
     var n = function (v, d) { v = parseFloat(v); return isFinite(v) ? v : d; }, st = sec.style;
@@ -1576,7 +1522,6 @@ const siteData = {
   burger.addEventListener('click', function () { toggle(!mm.classList.contains('open')); });
   $$('#mmenu a').forEach(function (a) { a.addEventListener('click', function () { toggle(false); }); });
 
-  /* ---------- Animasi Interaktif Blur & Auto Wave ---------- */
   (function initFooterBlurEvents() {
     var cfg = S.footerBlurText || {};
     if (cfg.enabled === false) return;
@@ -1613,7 +1558,6 @@ const siteData = {
     }
     function wake() { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
 
-    /* Wave effect otomatis saat load & scroll di Mobile */
     var wavedHero = false, wavedFooter = false;
     function triggerWave(heroOnly) {
       if (heroOnly && wavedHero) return;
@@ -1655,12 +1599,10 @@ const siteData = {
       });
     }
 
-    /* Preview otomatis setelah load */
     setTimeout(function() {
       triggerWave(true);
     }, 1600);
 
-    /* Mobile scroll observer untuk memicu efek teks */
     if ('IntersectionObserver' in window) {
       var hObs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
