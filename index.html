@@ -438,6 +438,25 @@ const siteData = {
   a { color:inherit; text-decoration:none; }
   img, video { max-width:100%; }
 
+  /* ---------- HINT BADGES & MICRO-COPY ---------- */
+  .hint-badge {
+    display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.65rem;
+    border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px;
+    font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255, 255, 255, 0.75);
+    background: rgba(5, 5, 5, 0.45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    pointer-events: none; user-select: none; transition: opacity 0.4s, transform 0.4s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .hint-badge-pulse {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--g1, #75E7ff);
+    box-shadow: 0 0 8px var(--g1, #75E7ff); animation: hintPulse 2s infinite ease-in-out;
+  }
+  @keyframes hintPulse {
+    0%, 100% { opacity: 0.35; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
   /* ---------- animasi masuk saat scroll ---------- */
   .js .reveal { opacity:0; transform:translateY(40px); transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s), transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s); }
   .js .reveal.in { opacity:1; transform:none; }
@@ -991,7 +1010,9 @@ const siteData = {
     var h = S.hero || {};
     var xsrc = X.image || h.avatar;
     var clone = xsrc ? '<img src="' + esc(xsrc) + '" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:' + esc(X.imageFit || 'fill') + '" onerror="this.remove()">' : avatarSVG();
-    return '<div class="xray" id="xray">' + av +
+    return '<div class="xray" id="xray">' +
+      '<div class="absolute -top-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none whitespace-nowrap"><span class="hint-badge"><span class="hint-badge-pulse"></span>[ Hover / Tap to X-Ray ]</span></div>' +
+      av +
       '<div class="xray-layer" aria-hidden="true"><div class="xray-img">' + clone + '</div>' + skullSVG() + (X.scanlines !== false ? '<div class="xray-scan"></div>' : '') + '</div></div>';
   }
 
@@ -1000,7 +1021,8 @@ const siteData = {
     var av = h.avatar ? '<img src="' + esc(h.avatar) + '" alt="' + esc(S.name) + '" style="display:block;width:100%;height:auto" onerror="this.outerHTML=window.__avatarSVG">' : avatarSVG();
     window.__avatarSVG = avatarSVG();
     return '<section id="top" class="relative overflow-hidden" style="background:var(--dark)">' +
-      '<div class="mx-auto w-full px-3 md:px-4 pt-24 md:pt-28">' +
+      '<div class="mx-auto w-full px-3 md:px-4 pt-20 md:pt-24 flex flex-col items-center">' +
+      '<div class="mb-2 hero-anim"><span class="hint-badge"><span class="hint-badge-pulse"></span>( Interactive Text )</span></div>' +
       '<h1 id="heroTitle" class="hero-title hero-anim" aria-label="' + esc(h.title) + '" style="--fb-blur:' + esc((S.footerBlurText || {}).initialBlur || '12px') + ';--fb-opacity:' + esc((S.footerBlurText || {}).initialOpacity || 0.35) + '">' + heroTitleHTML(h.title) + '</h1>' +
       '<div class="stage"><div class="glow hero-anim"></div>' +
       '<div class="stage-av"><div class="hero-av-in hero-anim"><div class="float" style="--t:9s"><div data-depth="-26">' + xrayWrap(av) + '</div></div></div></div>' +
@@ -1128,7 +1150,10 @@ const siteData = {
     var big = (f.bigName || []).map(function (l) { return buildFooterBlurText(l); }).join('<br>');
     return '<footer class="foot"><div class="mx-auto max-w-[1500px] px-5 md:px-10">' +
       '<div class="grid md:grid-cols-[1fr_auto_auto] gap-10 md:gap-24 items-start">' +
+      '<div>' +
+      '<div class="mb-3"><span class="hint-badge"><span class="hint-badge-pulse"></span>( Interactive Text )</span></div>' +
       '<div class="h-out" style="font-size:min(13vw,7rem);line-height:.95">' + big + '</div>' +
+      '</div>' +
       '<div class="text-sm"><h4 class="font-bold uppercase tracking-widest text-xs mb-4">Sosial</h4><ul class="list-none p-0 m-0 flex flex-col gap-2">' + soc + '</ul></div>' +
       '<div class="text-sm"><h4 class="font-bold uppercase tracking-widest text-xs mb-4">Kontak</h4><ul class="list-none p-0 m-0 flex flex-col gap-2 opacity-80"><li><a class="flink" href="mailto:' + esc(c.email) + '">' + esc(c.email) + '</a></li><li><a class="flink" href="https://wa.me/' + esc(c.whatsapp) + '" target="_blank" rel="noopener">WhatsApp: ' + esc(c.phone) + '</a></li><li>' + esc(c.address) + '</li></ul></div>' +
       '</div>' +
@@ -1271,7 +1296,6 @@ const siteData = {
   window.addEventListener('load', fitHero);
   if ('ResizeObserver' in window && ht) new ResizeObserver(fitHero).observe(ht.parentElement);
 
-  /* ---------- efek X-ray tengkorak di avatar ---------- */
   /* ---------- efek kaca kotak Layanan ---------- */
   (function initGlass() {
     var G = S.servicesGlass || {}, el = $('#services .light-panel'); if (!el) return;
@@ -1298,6 +1322,7 @@ const siteData = {
     s.setProperty('--gl-ts', size + 'px'); s.setProperty('--gl-to', n(G.textureOpacity, .7));
   })();
 
+  /* ---------- efek X-ray tengkorak di avatar ---------- */
   (function initXray() {
     var X = S.avatarXray || {};
     if (X.enabled === false) return;
@@ -1340,16 +1365,61 @@ const siteData = {
           if (!active) { if (r < 1) { x = tx; y = ty; } active = true; }
           tr = p.w * (mob ? n(X.radiusMobile, .36) : n(X.radius, .3)); to = 1;
         } else { active = false; tr = 0; to = 0; }
-      } else { active = false; tr = 0; to = 0; }
+      } else if (!autoPeeking) { active = false; tr = 0; to = 0; }
       var kp = 1 - Math.exp(-dt / follow), kf = 1 - Math.exp(-dt / (fade / 3));
       x += (tx - x) * kp; y += (ty - y) * kp; r += (tr - r) * kf; o += (to - o) * kf;
       st.setProperty('--xx', x.toFixed(1) + 'px'); st.setProperty('--xy', y.toFixed(1) + 'px');
       st.setProperty('--xr', Math.max(.1, r).toFixed(1) + 'px'); st.setProperty('--xo', Math.max(0, Math.min(1, o)).toFixed(3));
       var settled = Math.abs(tr - r) < .3 && Math.abs(to - o) < .005 && Math.abs(tx - x) < .3 && Math.abs(ty - y) < .3;
-      if (settled && !active) { if (to === 0) st.setProperty('--xo', 0); raf = 0; last = 0; return; }
+      if (settled && !active && !autoPeeking) { if (to === 0) st.setProperty('--xo', 0); raf = 0; last = 0; return; }
       raf = requestAnimationFrame(frame);
     }
     function wake() { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
+
+    /* Efek "Intip" Otomatis (Micro-Animation Preview) */
+    var autoPeeking = false, autoPeekDone = false;
+    function triggerAutoPeek() {
+      if (active || autoPeekDone) return;
+      autoPeekDone = true;
+      autoPeeking = true;
+      var start = performance.now();
+      var dur = 1800;
+      function step(now) {
+        if (active) { autoPeeking = false; return; }
+        var el = now - start;
+        if (el >= dur) {
+          autoPeeking = false;
+          tr = 0; to = 0;
+          wake();
+          return;
+        }
+        var p = el / dur;
+        var wave = Math.sin(p * Math.PI);
+        var w = wrap.offsetWidth || 300, h = wrap.offsetHeight || 300;
+        var mob = window.innerWidth < 768;
+        tx = w * 0.5; ty = h * 0.35;
+        tr = (w * (mob ? n(X.radiusMobile, .36) : n(X.radius, .3))) * wave;
+        to = wave;
+        wake();
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    setTimeout(triggerAutoPeek, 2000);
+
+    /* Trigger Otomatis saat di-scroll di Mobile / HP */
+    if ('IntersectionObserver' in window) {
+      var xobs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            triggerAutoPeek();
+          }
+        });
+      }, { threshold: 0.3 });
+      xobs.observe(wrap);
+    }
+
     document.addEventListener('pointermove', function (e) {
       if (e.pointerType === 'touch') return;
       px = e.clientX; py = e.clientY; wake();
@@ -1506,6 +1576,7 @@ const siteData = {
   burger.addEventListener('click', function () { toggle(!mm.classList.contains('open')); });
   $$('#mmenu a').forEach(function (a) { a.addEventListener('click', function () { toggle(false); }); });
 
+  /* ---------- Animasi Interaktif Blur & Auto Wave ---------- */
   (function initFooterBlurEvents() {
     var cfg = S.footerBlurText || {};
     if (cfg.enabled === false) return;
@@ -1513,7 +1584,7 @@ const siteData = {
     var radius = parseFloat(cfg.proximityRadius || 180), fScale = parseFloat(cfg.focusScale || 1.03);
     var items = $$('.footer-blur-char').map(function (el) {
       el.classList.add('sm');
-      return { el: el, hero: el.classList.contains('hero-char'), b: initBlur, o: initOp, s: 1, y: 0, tb: initBlur, to: initOp, ts: 1, ty: 0 };
+      return { el: el, hero: el.classList.contains('hero-char'), b: initBlur, o: initOp, s: 1, y: 0, tb: initBlur, to: initOp, ts: 1, ty: 0, animating: false };
     });
     if (!items.length) return;
     var px = null, py = null, raf = 0, last = 0;
@@ -1523,8 +1594,8 @@ const siteData = {
       var k = 1 - Math.exp(-dt / 150);
       var settled = true;
       items.forEach(function (it) {
-        if (px === null) { it.tb = initBlur; it.to = initOp; it.ts = 1; it.ty = 0; }
-        else {
+        if (px === null && !it.animating) { it.tb = initBlur; it.to = initOp; it.ts = 1; it.ty = 0; }
+        else if (px !== null) {
           var r = it.el.getBoundingClientRect();
           var d = Math.hypot(px - (r.left + r.width / 2), py - (r.top + r.height / 2));
           var rad = it.hero ? Math.max(radius, r.width * 1.25) : radius;
@@ -1537,10 +1608,77 @@ const siteData = {
         st.setProperty('--b', it.b.toFixed(2) + 'px'); st.setProperty('--o', it.o.toFixed(3));
         st.setProperty('--sc', it.s.toFixed(4)); st.setProperty('--y', it.y.toFixed(2) + 'px');
       });
-      if (settled && px === null) { raf = 0; last = 0; return; }
+      if (settled && px === null && !items.some(function(i){ return i.animating; })) { raf = 0; last = 0; return; }
       raf = requestAnimationFrame(frame);
     }
     function wake() { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
+
+    /* Wave effect otomatis saat load & scroll di Mobile */
+    var wavedHero = false, wavedFooter = false;
+    function triggerWave(heroOnly) {
+      if (heroOnly && wavedHero) return;
+      if (!heroOnly && wavedFooter) return;
+      if (heroOnly) wavedHero = true; else wavedFooter = true;
+
+      var targets = items.filter(function(it) {
+        return heroOnly ? it.hero : !it.hero;
+      });
+      if (!targets.length) return;
+
+      targets.forEach(function(it, idx) {
+        setTimeout(function() {
+          if (px !== null) return;
+          it.animating = true;
+          var start = performance.now();
+          var dur = 850;
+          function step(now) {
+            if (px !== null) { it.animating = false; return; }
+            var el = now - start;
+            if (el >= dur) {
+              it.animating = false;
+              it.tb = initBlur; it.to = initOp; it.ts = 1; it.ty = 0;
+              wake();
+              return;
+            }
+            var p = el / dur;
+            var w = Math.sin(p * Math.PI);
+            it.tb = initBlur * (1 - w);
+            it.to = initOp + (1 - initOp) * w;
+            it.ts = 1 + (fScale - 1) * w;
+            it.ty = -3 * w;
+            wake();
+            requestAnimationFrame(step);
+          }
+          wake();
+          requestAnimationFrame(step);
+        }, idx * 40);
+      });
+    }
+
+    /* Preview otomatis setelah load */
+    setTimeout(function() {
+      triggerWave(true);
+    }, 1600);
+
+    /* Mobile scroll observer untuk memicu efek teks */
+    if ('IntersectionObserver' in window) {
+      var hObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) triggerWave(true);
+        });
+      }, { threshold: 0.3 });
+      var hEl = $('#heroTitle');
+      if (hEl) hObs.observe(hEl);
+
+      var fObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) triggerWave(false);
+        });
+      }, { threshold: 0.2 });
+      var fEl = $('footer.foot');
+      if (fEl) fObs.observe(fEl);
+    }
+
     document.addEventListener('pointermove', function (e) {
       if (e.pointerType === 'touch') return;
       px = e.clientX; py = e.clientY; wake();
