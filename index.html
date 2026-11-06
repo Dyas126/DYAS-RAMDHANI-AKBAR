@@ -87,7 +87,8 @@ const siteData = {
     descSize: ".95rem",           
     descSizeMobile: ".6rem",      
     descWidth: 0.3,              
-    buttonScale: 1,
+    buttonScale: 0.75,            // Ukuran tombol - Desktop (1 = normal)
+    buttonScaleMobile: 0.85,      // Ukuran tombol - HP (1 = normal)
 
     // =========================================================================
     // ★ PENGATURAN POSISI TEKS UTAMA (BLOK NAMA, SAPAAN, ROLE, TOMBOL) ★
@@ -111,12 +112,12 @@ const siteData = {
     // ★ PENGATURAN BADGE HINT ([ HOVER / TAP TO X-RAY ]) ★
     // =========================================================================
     // ----- DESKTOP -----
-    badgeTop: 350,               // Jarak dari atas avatar (px)
+    badgeTop: "55%",             // Jarak dari atas avatar (persen tinggi avatar, ikut menyesuaikan ukuran layar)
     badgeBottom: "auto",         // Jarak dari bawah avatar (px/auto)
     badgeLeft: "auto",            // Jarak dari kiri avatar (px/%/auto)
     badgeRight: "auto",          // Jarak dari kanan avatar (px/auto)
     badgeShiftX: 5,              // Geser horizontal halus (positif = kanan, negatif = kiri dalam px)
-    badgeShiftY: 90,              // Geser vertikal halus (positif = bawah, negatif = atas dalam px)
+    badgeShiftY: 0,              // Geser vertikal halus (positif = bawah, negatif = atas dalam px)
     badgeScale: 1.5,               // Ukuran/skala badge (1 = normal, 1.2 = 20% lebih besar)
 
     // ----- MOBILE / HP -----
@@ -1042,7 +1043,6 @@ const siteData = {
       '<div class="reveal mx-auto mt-10 max-w-2xl flex flex-col gap-5" style="--d:.1s">' + paras + '</div>' +
       (chips ? '<div class="reveal flex flex-wrap justify-center gap-2 mt-8" style="--d:.15s">' + chips + '</div>' : '') +
       (stats ? '<div class="reveal grid grid-cols-3 gap-4 mt-14 pt-10 border-t border-white/15" style="--d:.1s">' + stats + '</div>' : '') +
-      '<div class="reveal mt-12" style="--d:.1s"><a class="btn-grad" href="' + esc(a.button.link) + '">' + esc(a.button.text) + '<span class="arr">→</span></a></div>' +
       '</div></section>';
   }
 
@@ -1247,7 +1247,7 @@ const siteData = {
     hs.setProperty('--hls', H.titleLetterSpacing || '-.085em');
     hs.setProperty('--hgap', num(H.titleLineGap, -.02));
     hs.setProperty('--hlh', num(H.titleLineHeight, .8));
-    hs.setProperty('--bs', num(H.buttonScale, 1));
+    hs.setProperty('--bs', mob ? num(H.buttonScaleMobile, num(H.buttonScale, 1)) : num(H.buttonScale, 1));
     heroLines.forEach(function (ln) {
       ln.style.setProperty('--fs', '100px');
       var w = ln.offsetWidth;
