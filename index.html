@@ -1227,6 +1227,7 @@ const siteData = {
     if (document.body.classList.contains('page-ready')) return;
     if (loader) loader.classList.add('done');
     document.body.classList.add('page-ready');
+    document.dispatchEvent(new Event('introready'));
     if (loader) setTimeout(function () { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 1300);
   }
   setTimeout(finishLoader, Math.max(0, minWait - (Date.now() - loaderStart)));
@@ -1374,7 +1375,7 @@ const siteData = {
           tx = p.x; ty = p.y;
           if (!active) { if (r < 1) { x = tx; y = ty; } active = true; }
           tr = p.w * (mob ? n(X.radiusMobile, .36) : n(X.radius, .3)); to = 1;
-        } else { active = false; tr = 0; to = 0; }
+        } else if (!autoPeeking) { active = false; tr = 0; to = 0; }
       } else if (!autoPeeking) { active = false; tr = 0; to = 0; }
       var kp = 1 - Math.exp(-dt / follow), kf = 1 - Math.exp(-dt / (fade / 3));
       x += (tx - x) * kp; y += (ty - y) * kp; r += (tr - r) * kf; o += (to - o) * kf;
@@ -1387,17 +1388,19 @@ const siteData = {
     function wake() { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
 
     var autoPeeking = false, autoPeekDone = false;
+    var coarse = window.matchMedia('(pointer:coarse)').matches;
     function triggerAutoPeek() {
-      if (active || autoPeekDone) return;
+      if (active || autoPeeking || (autoPeekDone && !coarse)) return;
       autoPeekDone = true; autoPeeking = true;
-      var start = performance.now(), dur = 1800;
+      if (r < 1) { x = (wrap.offsetWidth || 300) * 0.28; y = (wrap.offsetHeight || 300) * 0.35; }
+      var start = performance.now(), dur = 2000;
       function step(now) {
         if (active) { autoPeeking = false; return; }
         var el = now - start;
         if (el >= dur) { autoPeeking = false; tr = 0; to = 0; wake(); return; }
-        var p = el / dur, wave = Math.sin(p * Math.PI);
+        var p = el / dur, wave = Math.sin(p * Math.PI); wave = wave * wave * (3 - 2 * wave);
         var w = wrap.offsetWidth || 300, h = wrap.offsetHeight || 300, mob = window.innerWidth < 768;
-        tx = w * 0.5; ty = h * 0.35;
+        tx = w * (0.28 + 0.44 * p); ty = h * 0.35;
         tr = (w * (mob ? n(X.radiusMobile, .36) : n(X.radius, .3))) * wave;
         to = wave; wake();
         requestAnimationFrame(step);
@@ -1405,11 +1408,19 @@ const siteData = {
       requestAnimationFrame(step);
     }
 
-    setTimeout(triggerAutoPeek, 2000);
+    var peekReady = false;
+    // teaser X-ray: mulai bersamaan dengan wave teks, menyapu kiri ke kanan mengikuti gelombang
+    document.addEventListener('introready', function () { setTimeout(function () { peekReady = true; triggerAutoPeek(); }, 1300); }, { once: true });
+    // HP: teaser X-ray juga menyala saat sentuhan pertama di layar
+    if (coarse) document.addEventListener('touchstart', function () { if (peekReady) triggerAutoPeek(); }, { once: true, passive: true });
 
     if ('IntersectionObserver' in window) {
       var xobs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) { if (e.isIntersecting) triggerAutoPeek(); });
+        entries.forEach(function(e) {
+          if (!e.isIntersecting || !peekReady) return;
+          // HP: setiap kali hero terlihat lagi, X-ray menyala bergantian setelah wave teks selesai
+          if (coarse && autoPeekDone) setTimeout(triggerAutoPeek, 1400); else triggerAutoPeek();
+        });
       }, { threshold: 0.3 });
       xobs.observe(wrap);
     }
@@ -1589,7 +1600,7 @@ const siteData = {
       var settled = true;
       items.forEach(function (it) {
         if (px === null && !it.animating) { it.tb = initBlur; it.to = initOp; it.ts = 1; it.ty = 0; }
-        else if (px !== null) {
+        else if (px !== null && !it.animating) {
           var r = it.el.getBoundingClientRect();
           var d = Math.hypot(px - (r.left + r.width / 2), py - (r.top + r.height / 2));
           var rad = it.hero ? Math.max(radius, r.width * 1.25) : radius;
@@ -1608,6 +1619,7 @@ const siteData = {
     function wake() { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
 
     var wavedHero = false, wavedFooter = false;
+    var coarseW = window.matchMedia('(pointer:coarse)').matches;
     function triggerWave(heroOnly) {
       if (heroOnly && wavedHero) return;
       if (!heroOnly && wavedFooter) return;
@@ -1620,11 +1632,9 @@ const siteData = {
 
       targets.forEach(function(it, idx) {
         setTimeout(function() {
-          if (px !== null) return;
           it.animating = true;
-          var start = performance.now(), dur = 850;
+          var start = performance.now(), dur = 1200;
           function step(now) {
-            if (px !== null) { it.animating = false; return; }
             var el = now - start;
             if (el >= dur) {
               it.animating = false;
@@ -1632,7 +1642,7 @@ const siteData = {
               wake();
               return;
             }
-            var p = el / dur, w = Math.sin(p * Math.PI);
+            var p = el / dur, w = Math.sin(p * Math.PI); w = w * w * (3 - 2 * w);
             it.tb = initBlur * (1 - w);
             it.to = initOp + (1 - initOp) * w;
             it.ts = 1 + (fScale - 1) * w;
@@ -1642,20 +1652,21 @@ const siteData = {
           }
           wake();
           requestAnimationFrame(step);
-        }, idx * 40);
+        }, idx * 60);
       });
     }
 
-    setTimeout(function() { triggerWave(true); }, 1600);
+    var waveReady = false;
+    document.addEventListener('introready', function () { setTimeout(function () { waveReady = true; triggerWave(true); }, 1300); }, { once: true });
 
     if ('IntersectionObserver' in window) {
       var hObs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) { if (e.isIntersecting) triggerWave(true); });
+        entries.forEach(function(e) { if (e.isIntersecting) { if (waveReady) triggerWave(true); } else if (coarseW) wavedHero = false; });
       }, { threshold: 0.3 });
       var hEl = $('#heroTitle'); if (hEl) hObs.observe(hEl);
 
       var fObs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) { if (e.isIntersecting) triggerWave(false); });
+        entries.forEach(function(e) { if (e.isIntersecting) triggerWave(false); else if (coarseW) wavedFooter = false; });
       }, { threshold: 0.2 });
       var fEl = $('footer.foot'); if (fEl) fObs.observe(fEl);
     }
